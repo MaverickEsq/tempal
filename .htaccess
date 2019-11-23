@@ -1,5 +1,4 @@
 RewriteEngine On
 
-RewriteRule ^(?!index\.php)(.+)(\..+)?(\?.+)$ /index.php?id=$1&hl=$3 [L]
-RewriteRule ^(?!index\.php)(.+)(\..+)?$ /index.php?id=$1 [L]
-#RewriteRule ^inc/.*$ index.php [L]
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^(?!index\.php)(.+?)(?:\..+)?$ /index.php?id=$1&hl=%1 [NE]

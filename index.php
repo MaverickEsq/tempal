@@ -2,7 +2,7 @@
 if (!file_exists('./inc/paste.db')) {
 	$db = new SQLite3('./inc/paste.db');
 	$db->exec("CREATE TABLE pastes(pid TEXT, data BLOB, ip TEXT)");
-	$db->close;
+	$db->close();
 }
 
 $config = parse_ini_file('config.ini');
@@ -19,13 +19,13 @@ if (isset($_POST[$config['name']])) {
         $db->exec('INSERT INTO pastes(pid, data, ip) VALUES(\'' . $pasteid . '\', \'' . SQLite3::escapeString($_POST[$config['name']]) . '\', \'' . $_SERVER['REMOTE_ADDR'] . '\')');
 
         print 'https://' . $config['url'] . '/' . $pasteid . "\n";
-        $db->close;
+        $db->close();
         die;
 } else if (isset($_GET['id'])) {
         //get paste
         $db = new SQLite3('./inc/paste.db');
         $paste = $db->querySingle('SELECT data FROM pastes WHERE pid=\'' . SQLite3::escapeString($_GET['id']) . '\'');
-        $db->close;
+        $db->close();
         if ($paste == NULL) {
                 die("No such paste found");
         }

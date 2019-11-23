@@ -56,7 +56,7 @@ SYNOPSIS
 
 DESCRIPTION
     add <b>?&lt;lang&gt;</b> to resulting url for line numbers and syntax highlighting
-    use <a onclick="document.getElementById(\'paste\').style.display = \'block\'" href="#">this form</a> to paste from a browser
+    use <a onclick=\'var x = document.getElementById("paste"); if (x.style.display === "none") {x.style.display = "block";} else {x.style.display = "none";}\' href="#">this form</a> to paste from a browser
     <div id="paste" style="display:none;"><form action="http://' . $config['url'] . '" method="POST" accept-charset="UTF-8"><textarea name="' . $config['name'] . '" cols="80" rows="24"></textarea><br><button type="submit">' . $config['name'] . '</button></form></div>
 EXAMPLES
     ~$ cat crash/bang | curl -F \'' . $config['name'] . '=<-\' http://' . $config['url'] . '

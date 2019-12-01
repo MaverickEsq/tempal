@@ -18,9 +18,11 @@ if (isset($_POST[$config['name']])) {
         $pasteid = substr(str_shuffle($idchars), 0, 8);
 
         $db->exec('INSERT INTO pastes(pid, data, ip) VALUES(\'' . $pasteid . '\', \'' . SQLite3::escapeString($_POST[$config['name']]) . '\', \'' . $_SERVER['REMOTE_ADDR'] . '\')');
+        $url = 'https://' . $config['url'] . '/' . $pasteid;
 
         header("Content-Type: text/plain");
-        print 'https://' . $config['url'] . '/' . $pasteid . "\n";
+        header("refresh:5;url=" . $url);
+        print $url . "\n";
         $db->close();
         die;
 } else if (isset($_GET['id'])) {
@@ -69,9 +71,9 @@ SYNOPSIS
 DESCRIPTION
     add <b>?&lt;lang&gt;</b> to resulting url for line numbers and syntax highlighting
     use <a onclick=\'var x = document.getElementById("paste"); if (x.style.display === "none") {x.style.display = "block";} else {x.style.display = "none";}\' href="#">this form</a> to paste from a browser
-    <div id="paste" style="display:none;"><form action="http://' . $config['url'] . '" method="POST" accept-charset="UTF-8"><textarea name="' . $config['name'] . '" cols="80" rows="24"></textarea><br><button type="submit">' . $config['name'] . '</button></form></div>
+    <div id="paste" style="display:none;"><form action="//' . $config['url'] . '" method="POST" accept-charset="UTF-8"><textarea name="' . $config['name'] . '" cols="80" rows="24"></textarea><br><button type="submit">' . $config['name'] . '</button></form></div>
 EXAMPLES
-    ~$ cat crash/bang | curl -F \'' . $config['name'] . '=<-\' http://' . $config['url'] . '
+    ~$ cat crash/bang | curl -F \'' . $config['name'] . '=<-\' https://' . $config['url'] . '
        http://' . $config['url'] . '/aXZI
     ~$ firefox http://' . $config['url'] . '/aXZI?py
 

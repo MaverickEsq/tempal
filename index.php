@@ -35,7 +35,7 @@ if (isset($_POST[$config['name']])) {
             die("No such paste found");
         }
 
-        if (isset($_GET['hl'])) {
+        if ($_GET['hl'] != '') {
                 //highlighting
                 include_once './inc/geshi.php';
 
@@ -55,31 +55,32 @@ if (isset($_POST[$config['name']])) {
         print $paste;
         die;
 }
-
 //Printing the page. If we do things, it dies, so it never gets here
-print '<html ml-update="aware"><head><title>' . $config['name'] . '</title></head><body>
+?>
+
+<!DOCTYPE html><html><head><title><?= $config['name'] ?></title></head><body>
 
 <style> a { text-decoration: none } </style>
-<pre>' . $config['name'] . '(1)                          ' . strtoupper($config['name']) . '                          ' . $config['name'] . '(1)
+<pre><?= $config['name'] ?>(1)                          <?= strtoupper($config['name']) ?>                          <?= $config['name'] ?>(1)
 
 NAME
-    ' . $config['name'] . ': command line pastebin.
+    <?= $config['name'] ?>: command line pastebin.
 
 SYNOPSIS
-    <code>&lt;command&gt; | curl -F \'' . $config['name'] . '=<-\' http://' . $config['url'] . '</code>
+    <code>&lt;command&gt; | curl -F \'<?= $config['name'] ?>=<-\' http://<?= $config['url'] ?></code>
 
 DESCRIPTION
     add <b>?&lt;lang&gt;</b> to resulting url for line numbers and syntax highlighting
     use <a onclick=\'var x = document.getElementById("paste"); if (x.style.display === "none") {x.style.display = "block";} else {x.style.display = "none";}\' href="#">this form</a> to paste from a browser
-    <div id="paste" style="display:none;"><form action="//' . $config['url'] . '" method="POST" accept-charset="UTF-8"><textarea name="' . $config['name'] . '" cols="80" rows="24"></textarea><br><button type="submit">' . $config['name'] . '</button></form></div>
+    <div id="paste" style="display:none;"><form action="//<?= $config['url'] ?>" method="POST" accept-charset="UTF-8"><textarea name="<?= $config['name'] ?>" cols="80" rows="24"></textarea><br><button type="submit"><?= $config['name'] ?></button></form></div>
 EXAMPLES
-    ~$ cat crash/bang | curl -F \'' . $config['name'] . '=<-\' https://' . $config['url'] . '
-       http://' . $config['url'] . '/aXZI
-    ~$ firefox http://' . $config['url'] . '/aXZI?py
+    ~$ cat crash/bang | curl -F \'<?= $config['name'] ?>=<-\' https://<?= $config['url'] ?>
+       http://<?= $config['url'] ?>/aXZI
+    ~$ firefox http://<?= $config['url'] ?>/aXZI?py
 
 SEE ALSO
     http://github.com/MaverickEsq/tempal
 
 </pre>
 </body>
-</html>';
+</html>

@@ -20,7 +20,7 @@ To this end, I decided to make a pastebin that met a few criteria.
 So, tempal was written in php, using an sqlite3 database and as little complexity as possible.
 
 ## Deployment
-Simply `git clone` or extract from zip into a web directory. It expects to be at the root directory, theres probably a simple htaccess fix for that. The first time the script runs it will make a database.
+Simply `git clone` or extract from zip into a web directory and `chmod inc 777`. It expects to be at the root directory, theres probably a simple htaccess fix for that. The first time the script runs it will make a database.
 
 ## Credits
 This uses GeSHi (http://qbnz.com/highlighter/) but for simplicity's sake I have included it.

@@ -74,7 +74,7 @@ DESCRIPTION
     use <a onclick=\'var x = document.getElementById("paste"); if (x.style.display === "none") {x.style.display = "block";} else {x.style.display = "none";}\' href="#">this form</a> to paste from a browser
     <div id="paste" style="display:none;"><form action="//<?= $config['url'] ?>" method="POST" accept-charset="UTF-8"><textarea name="<?= $config['name'] ?>" cols="80" rows="24"></textarea><br><button type="submit"><?= $config['name'] ?></button></form></div>
 EXAMPLES
-    ~$ cat crash/bang | curl -F \'<?= $config['name'] ?>=<-\' https://<?= $config['url'] ?>
+    ~$ cat crash/bang | curl -F \'<?= $config['name'] ?>=<-\' https://<?= $config['url'] ?>&nbsp;
        http://<?= $config['url'] ?>/aXZI
     ~$ firefox http://<?= $config['url'] ?>/aXZI?py
 

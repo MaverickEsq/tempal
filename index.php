@@ -19,20 +19,23 @@ ini_set('post_max_size', $config['max_size']);
 // Start doing things
 if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
 
+    // Decide if this is _POST or _FILES
     if (is_uploaded_file($_FILES[$config['name']]['tmp_name'])) {
         $paste = file_get_contents($_FILES[$config['name']]['tmp_name']);
     } else {
         $paste = $_POST[$config['name']];
     }
-    // Handling for posted text
+
+    // Get an id for the paste
     $pasteid = genid();
 
+    // Preparing query because blob
     $db = new SQLite3('./inc/paste.db');
     $query = $db->prepare("INSERT INTO pastes(pid, data, ip) VALUES(:id, :paste, :ip)");
     $query->bindValue(':id', $pasteid, SQLITE3_TEXT);
     $query->bindValue(':paste', $paste, SQLITE3_BLOB);
     $query->bindValue(':ip', $_SERVER['REMOTE_ADDR'], SQLITE3_TEXT);
-    $query->execute();
+    $query->execute() or die("Database error");
 
     $url = 'https://' . $config['url'] . '/' . $pasteid;
 
@@ -101,9 +104,34 @@ DESCRIPTION
     use <a onclick='var x = document.getElementById("paste"); if (x.style.display === "none") {x.style.display = "block";} else {x.style.display = "none";}' href="#">this form</a> to paste from a browser
     <div id="paste" style="display:none;"><form action="//<?= $config['url'] ?>" method="POST" accept-charset="UTF-8"><textarea name="<?= $config['name'] ?>" cols="80" rows="24"></textarea><br><button type="submit"><?= $config['name'] ?></button></form></div>
 EXAMPLES
-    ~$ cat crash/bang | curl -F '<?= $config['name'] ?>=<-' https://<?= $config['url'] ?>&nbsp;
-       http://<?= $config['url'] ?>/aXZI
-    ~$ firefox http://<?= $config['url'] ?>/aXZI?py
+    Use the output from a command to create a paste
+        ~$ cat crash/bang | curl -F '<?= $config['name'] ?>=<-' https://<?= $config['url'] ?>&nbsp;
+           http://<?= $config['url'] ?>/aXZI
+        ~$ firefox http://<?= $config['url'] ?>/aXZI?py
+
+    Upload a file
+        ~$ curl -F '<?= $config['name'] ?>=@filename.ext' https://<?= $config['url'] ?>&nbsp;
+           http://<?= $config['url'] ?>/aXZI
+
+CLIENT
+    A client is avalible from <?= $config['name'] ?>/client
+
+        <code>curl <?= $config['url'] ?>/client > <?= $config['name'] ?>&nbsp;
+        chmod +x <?= $config['name'] ?>&nbsp;
+        ./<?= $config['name'] ?> -h</code>
+
+    Or you may place the following in your ~/.bashrc
+
+        <code><?= $config['name'] ?>() {
+            if [[ $# -gt 0 ]]; then&nbsp;
+                for FILE in "$@"&nbsp;
+                do&nbsp;
+                    curl -F '<?= $config['name'] ?>='"@$FILE" https://<?= $config['url'] ?>&nbsp;
+                done&nbsp;
+            else&nbsp;
+                curl -F '<?= $config['name'] ?>=<-' https://<?= $config['url'] ?>&nbsp;
+            fi&nbsp;
+        }</code>
 
 SEE ALSO
     http://github.com/MaverickEsq/tempal

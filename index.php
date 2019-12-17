@@ -20,7 +20,8 @@ ini_set('post_max_size', $config['max_size']);
 if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
 
     // Decide if this is _POST or _FILES
-    if (is_uploaded_file($_FILES[$config['name']]['tmp_name'])) {
+    // Double down on isset for less warnings
+    if (isset($_FILES[$config['name']]) && is_uploaded_file($_FILES[$config['name']]['tmp_name'])) {
         $paste = file_get_contents($_FILES[$config['name']]['tmp_name']);
     } else {
         $paste = $_POST[$config['name']];
@@ -75,10 +76,13 @@ if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
         if (substr($finfo->buffer($paste), 0, 4) == "text") {
             header("Content-type: text/plain");
         } else {
+            header('Pragma: public');
+            header('Cache-Control: max-age=432000');
+            header('Expires: '. gmdate('D, d M Y H:i:s \G\M\T', time() + 432000));
             header("Content-Type: " . $finfo->buffer($paste));
         }
     }
-    print $paste;
+    echo $paste;
     die;
 }
 //Printing the page. If we do things, it dies, so it never gets here
@@ -97,7 +101,7 @@ NAME
     <?= $config['name'] ?>: command line pastebin.
 
 SYNOPSIS
-    <code>&lt;command&gt; | curl -F '<?= $config['name'] ?>=<-' http://<?= $config['url'] ?></code>
+    <code>&lt;command&gt; | curl -F '<?= $config['name'] ?>=<-' <?= $config['url'] ?></code>
 
 DESCRIPTION
     add <b>?&lt;lang&gt;</b> to resulting url for line numbers and syntax highlighting

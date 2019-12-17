@@ -1,5 +1,5 @@
 RewriteEngine On
 
 RewriteCond %{QUERY_STRING} ^(.*)$
-RewriteRule ^client$ /client.php [L]
-RewriteRule ^(?!index\.php)(.+?)(?:\..+)?$ /index.php?id=$1&hl=%1 [NE]
+RewriteRule ^(?!client\.php)client$ /client.php [L]
+RewriteRule ^(?!index\.php|client\.php)(.+?)(?:\..+)?$ /index.php?id=$1&hl=%1 [NE]

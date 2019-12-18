@@ -8,12 +8,12 @@ header('Content-type: text/plain');
 #	<?= $config['name'] ?> file.txt 	# paste a file
 #	uname -a | <?= $config['name'] ?> 	# paste the output of a command
 
-<?= $config['name'] ?>() {
+<?= preg_replace('/^\d+?/', '', $config['name']) ?>() {
 	if [[ "$1" == -h ]]; then
 		echo "Upload a file a file:"
-		echo "	<?= $config['name'] ?> file.txt"
+		echo "	<?= preg_replace('/^\d+?/', '', $config['name']) ?> file.txt"
 		echo "Paste the output of a command:"
-		echo "	uname -a | <?= $config['name'] ?>"
+		echo "	uname -a | <?= preg_replace('/^\d+?/', '', $config['name']) ?>"
 		exit 1;
 	fi
 	if [[ $# -gt 0 ]]
@@ -29,4 +29,4 @@ header('Content-type: text/plain');
 	fi
 }
 
-<?= $config['name'] ?> $*
+<?= preg_replace('/^\d+?/', '', $config['name']) ?> $*

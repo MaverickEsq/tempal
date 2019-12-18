@@ -126,11 +126,11 @@ CLIENT
 
     Or you may place the following in your ~/.bashrc
 
-        <code><?= $config['name'] ?>() {
+        <code><?= preg_replace('/^\d+?/', '', $config['name']) ?>() {
             if [[ $# -gt 0 ]]; then&nbsp;
                 for FILE in "$@"&nbsp;
                 do&nbsp;
-                    curl -F '<?= $config['name'] ?>='"@$FILE" https://<?= $config['url'] ?>&nbsp;
+                    curl -F '<?= $config['name'] ?>=@'"$FILE" https://<?= $config['url'] ?>&nbsp;
                 done&nbsp;
             else&nbsp;
                 curl -F '<?= $config['name'] ?>=<-' https://<?= $config['url'] ?>&nbsp;

@@ -123,7 +123,7 @@ EXAMPLES
            http://<?= $config['url'] ?>/aXZI
 
 CLIENT
-    A client is avalible from <?= $config['name'] ?>/client
+    A client is avalible from <?= $config['url'] ?>/client
 
         <code>curl <?= $config['url'] ?>/client > <?= $config['name'] ?>&nbsp;
         chmod +x <?= $config['name'] ?>&nbsp;

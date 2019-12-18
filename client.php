@@ -5,8 +5,8 @@ header('Content-type: text/plain');
 #!/usr/bin/env bash
 
 # Examples
-#	<?= $config['name'] ?> file.txt 	# paste a file
-#	uname -a | <?= $config['name'] ?> 	# paste the output of a command
+#	<?= preg_replace('/^\d+?/', '', $config['name']) ?> file.txt 	# paste a file
+#	uname -a | <?= preg_replace('/^\d+?/', '', $config['name']) ?> 	# paste the output of a command
 
 <?= preg_replace('/^\d+?/', '', $config['name']) ?>() {
 	if [[ "$1" == -h ]]; then

@@ -27,6 +27,10 @@ if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
         $paste = $_POST[$config['name']];
     }
 
+    if ($paste == '') {
+        die("Empty paste\n");
+    }
+
     // Get an id for the paste
     $pasteid = genid();
 
@@ -42,7 +46,7 @@ if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
 
     header("Content-Type: text/plain");
     header("refresh:5;url=" . $url);
-    print $url . "\n";
+    echo $url, "\n";
     die;
 } else if (isset($_GET['id'])) {
     // There is an id given, so this is a request to view
@@ -57,7 +61,7 @@ if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
         die("No such paste found");
     }
 
-    if ($_GET['hl'] != '') {
+    if ($_GET['hl'] !== '') {
         //highlighting
         include_once './inc/geshi.php';
 
@@ -73,13 +77,14 @@ if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
         $paste = geshi_highlight($paste, $lexer, null, true);
     } else {
         $finfo = new finfo(FILEINFO_MIME);
-        if (substr($finfo->buffer($paste), 0, 4) == "text") {
+        $mime = $finfo->buffer($paste);
+        if (str_split($mime, '/')[0] == "text") {
             header("Content-type: text/plain");
         } else {
             header('Pragma: public');
             header('Cache-Control: max-age=432000');
             header('Expires: '. gmdate('D, d M Y H:i:s \G\M\T', time() + 432000));
-            header("Content-Type: " . $finfo->buffer($paste));
+            header("Content-Type: " . $mime);
         }
     }
     echo $paste;

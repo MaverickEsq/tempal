@@ -78,7 +78,7 @@ if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
     } else {
         $finfo = new finfo(FILEINFO_MIME);
         $mime = $finfo->buffer($paste);
-        if (str_split($mime, '/')[0] == "text") {
+        if (explode($mime, '/')[0] == "text") {
             header("Content-type: text/plain");
         } else {
             header('Pragma: public');

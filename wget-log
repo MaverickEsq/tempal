@@ -1,8 +1,0 @@
---2019-12-18 18:48:44--  https://scontent.fadl6-1.fna.fbcdn.net/v/t1.0-9/79688718_2785134988210369_602402603879366656_n.jpg?_nc_cat=1
-Resolving scontent.fadl6-1.fna.fbcdn.net (scontent.fadl6-1.fna.fbcdn.net)... 60.240.23.209, 2407:8800:bf00:b7:face:b00c:0:a7
-Connecting to scontent.fadl6-1.fna.fbcdn.net (scontent.fadl6-1.fna.fbcdn.net)|60.240.23.209|:443... connected.
-GnuTLS: Resource temporarily unavailable, try again.
-GnuTLS: Resource temporarily unavailable, try again.
-HTTP request sent, awaiting response... 403 Forbidden
-2019-12-18 18:48:45 ERROR 403: Forbidden.
-

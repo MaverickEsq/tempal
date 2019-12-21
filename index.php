@@ -7,7 +7,7 @@ if (!file_exists('./inc/paste.db')) {
 }
 
 function genid() {
-    // You would need about 435 exabytes of pastes before an 8 char ID
+    // You would need about 266 exabytes of pastes before an 8 char ID
     // will definitely repeat. Good enough for me.
     $idchars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     return substr(str_shuffle($idchars), 0, 8);

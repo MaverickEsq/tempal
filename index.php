@@ -9,8 +9,7 @@ if (!file_exists('./inc/paste.db')) {
 function genid($len=8) {
     // You would need about 435 exabytes of pastes before an 8 char ID
     // will definitely repeat. Good enough for me.
-    // Maximum: 22 chars
-    $uid = base64_encode(md5("" . random_bytes(30), TRUE));
+    $uid = base64_encode(random_bytes($len * 3));
     $uid = preg_replace("/[^A-Za-z0-9]/", "", $uid);
 
     return substr($uid, 0, $len);

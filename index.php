@@ -6,12 +6,18 @@ if (!file_exists('./inc/paste.db')) {
 	$db->close();
 }
 
-function genid() {
-    // You would need about 266 exabytes of pastes before an 8 char ID
+function genid($len=8) {
+    // You would need about 435 exabytes of pastes before an 8 char ID
     // will definitely repeat. Good enough for me.
-    $idchars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    return substr(str_shuffle($idchars), 0, 8);
+    $hex = md5("" . random_bytes(30));
+    $pack = pack('H*', $hex);
+    // max 22 chars
+    $uid = base64_encode($pack);
+    $uid = preg_replace("/[^A-Za-z0-9]/", "", $uid);
+
+    return substr($uid, 0, $len);
 }
+
 
 $config = parse_ini_file('config.ini');
 ini_set('post_max_size', $config['max_size']);

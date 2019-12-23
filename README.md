@@ -23,7 +23,7 @@ So, tempal was written in php, using an sqlite3 database and as little complexit
 Simply `git clone` or extract from zip into a web directory and `chmod inc 777`. It expects to be at the root directory, theres probably a simple htaccess fix for that. The first time the script runs it will make a database.
 
 ### Requirements  
-`PHP>=7.0`  [RECCOMENDED]
+`PHP>=7.0`  
 `SQLite3` from `php-pdo`  
 
 ## Credits

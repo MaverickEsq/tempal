@@ -22,12 +22,16 @@ So, tempal was written in php, using an sqlite3 database and as little complexit
 ## Deployment
 Simply `git clone` or extract from zip into a web directory and `chmod inc 777`. It expects to be at the root directory, theres probably a simple htaccess fix for that. The first time the script runs it will make a database.
 
+### Requirements  
+`PHP>=7.0`  [RECCOMENDED]
+`SQLite3` from `php-pdo`  
+
 ## Credits
 This uses GeSHi (http://qbnz.com/highlighter/) but for simplicity's sake I have included it.
 
 Credit obviously to sprunge.us and ix.io who inspire this and whose main page I shamelessly ripped off
 
-`mpan` probably deserves a credit, not for input to this project but just in general.
+`mpan` probably deserves a credit, for input to this project but also just in general.
 
 ## License
 Tempal is licensed under the WTFPL under the condition that any fork or derative work remains under the WTFPL.

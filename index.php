@@ -9,10 +9,8 @@ if (!file_exists('./inc/paste.db')) {
 function genid($len=8) {
     // You would need about 435 exabytes of pastes before an 8 char ID
     // will definitely repeat. Good enough for me.
-    $hex = md5("" . random_bytes(30));
-    $pack = pack('H*', $hex);
-    // max 22 chars
-    $uid = base64_encode($pack);
+    // Maximum: 22 chars
+    $uid = base64_encode(md5("" . random_bytes(30), TRUE));
     $uid = preg_replace("/[^A-Za-z0-9]/", "", $uid);
 
     return substr($uid, 0, $len);
@@ -67,32 +65,33 @@ if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
         die("No such paste found");
     }
 
-    if ($_GET['hl'] !== '') {
-        //highlighting
-        include_once './inc/geshi.php';
+    $finfo = new finfo(FILEINFO_MIME);
+    $mime = $finfo->buffer($paste);
+    if (explode('/', $mime)[0] == "text") {
+        if ($_GET['hl'] !== '') {
+            //highlighting
+            include_once './inc/geshi.php';
 
-        // Get language returns "text" if its not a file extension
-        // This lets us use 'pl' or 'perl' to highligh a block
-        if (GeSHi::get_language_name_from_extension(strtolower($_GET['hl'])) != 'text') {
-                $lexer = GeSHi::get_language_name_from_extension(strtolower($_GET['hl']));
+            // Get language returns "text" if its not a file extension
+            // This lets us use 'pl' or 'perl' to highligh a block
+            if (GeSHi::get_language_name_from_extension(strtolower($_GET['hl'])) != 'text') {
+                    $lexer = GeSHi::get_language_name_from_extension(strtolower($_GET['hl']));
+            } else {
+                    $lexer = $_GET['hl'];
+            }
+            // null for the path cause we leave it default, true to
+            // return it instead of echoing it.
+            $paste = geshi_highlight($paste, $lexer, null, true);
         } else {
-                $lexer = $_GET['hl'];
-        }
-        // null for the path cause we leave it default, true to
-        // return it instead of echoing it.
-        $paste = geshi_highlight($paste, $lexer, null, true);
-    } else {
-        $finfo = new finfo(FILEINFO_MIME);
-        $mime = $finfo->buffer($paste);
-        if (explode('/', $mime)[0] == "text") {
             header("Content-type: text/plain");
-        } else {
-            header('Pragma: public');
-            header('Cache-Control: max-age=432000');
-            header('Expires: '. gmdate('D, d M Y H:i:s \G\M\T', time() + 432000));
-            header("Content-Type: " . $mime);
         }
+    } else {
+        header('Pragma: public');
+        header('Cache-Control: max-age=432000');
+        header('Expires: '. gmdate('D, d M Y H:i:s \G\M\T', time() + 432000));
+        header("Content-Type: " . $mime);
     }
+
     echo $paste;
     die;
 }

@@ -9,7 +9,7 @@
      * any derivative work includes this license.
      * See the LICENSE file for more details. 
 */
-$config = parse_ini_file('config.ini');
+$config = parse_ini_file('../config.ini');
 header('Content-type: text/plain');
 ?>
 #!/usr/bin/env bash

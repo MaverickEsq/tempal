@@ -1,4 +1,15 @@
 <?php
+/*
+     * TEMPAL v1.0
+     * Copyright (c) Sloth <sloth@faggotry.org>
+     * This program is free software. It comes without any warranty, to
+     * the extent permitted by applicable law. You can redistribute it
+     * and/or modify it under the terms of the Do What The Fuck You Want
+     * To Public License, Version 2.1, as published by Sloth so long as
+     * any derivative work includes this license.
+     * See the LICENSE file for more details. 
+*/
+
 // Make the database if its not there
 if (!file_exists('./inc/paste.db')) {
 	$db = new SQLite3('./inc/paste.db');

@@ -20,7 +20,9 @@ To this end, I decided to make a pastebin that met a few criteria.
 So, tempal was written in php, using an sqlite3 database and as little complexity as possible.
 
 ## Deployment
-Simply `git clone` or extract from zip into a web directory and `chmod inc 777`. It expects to be at the root directory, theres probably a simple htaccess fix for that. The first time the script runs it will make a database.
+Simply `git clone` or extract from zip into a web directory and `chmod ./inc 777`. Ensure you edit `config.ini` to include your domain and the name of your pastebin. (This will be used for POST details and the client)  
+`Tempal` expects to be at the root directory, theres probably a simple htaccess fix for those who wish to run it from a subdirectory.  
+The first time the script runs it will make a database.
 
 ### Requirements  
 `PHP>=7.0`  
@@ -37,9 +39,9 @@ Credit obviously to sprunge.us and ix.io who inspire this and whose main page I 
 Tempal is licensed under the WTFPL under the condition that any fork or derative work remains under the WTFPL.
 
             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-                    Version 2, December 2004
+                    Version 2.1, December 2019
 
-	 Copyright (C) 2013 Sloth <sloth@faggotry.org>
+	 Copyright (C) 2019 Sloth <sloth@faggotry.org>
 
 	 Everyone is permitted to copy and distribute verbatim or modified
 	 copies of this license document, and changing it is allowed as long
@@ -47,5 +49,7 @@ Tempal is licensed under the WTFPL under the condition that any fork or derative
 
             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
      TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+     This program is free software. It comes without any warranty, to 
+     the extent permitted by applicable law.
 
     0. You just DO WHAT THE FUCK YOU WANT TO.

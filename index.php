@@ -104,6 +104,6 @@ if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
     echo $paste;
 } else {
     //Printing the page. If we do things, it dies, so it never gets here
-    include 'inc/man.inc.php'
+    include 'inc/man.inc.php';
 }
 ?>

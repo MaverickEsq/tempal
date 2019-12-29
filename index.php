@@ -57,7 +57,7 @@ if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
     }
 
     if (strlen($paste) > byteconv($config['max_size'])) {
-        die("Paste larger than" . $config['max_size'] . " \n");
+        die("Paste larger than " . $config['max_size'] . "\n");
     }
 
     // Get an id for the paste

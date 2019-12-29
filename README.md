@@ -6,7 +6,7 @@
                          |_|
 	     Where fleetingness is a virtue
 [![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)[![PHP](https://img.shields.io/badge/Made%20with-php-9cf)](https://php.net/)[![Maintainability](https://api.codeclimate.com/v1/badges/1e03fc80af9a5f03f52c/maintainability)](https://codeclimate.com/github/MaverickEsq/tempal/maintainability)
-## Description
+## :card_index: Description
 Inspired by *sprunge*, *ix.io* and others, I decided to make a small, command line pastebin. The things I saw when looking at other pastebins were that they used things like weird google storage APIs and didn't have a web form that could be quickly used.
 
 To this end, I decided to make a pastebin that met a few criteria.
@@ -19,24 +19,24 @@ To this end, I decided to make a pastebin that met a few criteria.
 
 So, tempal was written in php, using an sqlite3 database and as little complexity as possible.
 
-## Deployment
+## :rocket: Deployment
 Simply `git clone` or extract from zip into a web directory and `chmod ./inc 777`.  
 Ensure you edit `config.ini` to include your domain and the name of your pastebin.  
   
 The first time the script runs it will make a database.
 
-### Requirements  
-`PHP>=7.0`  
-`SQLite3` from `php-pdo`  
+### :pushpin: Requirements  
+:package: `PHP>=7.0`  
+:package: `SQLite3` from :package: `php-pdo`  
 
-## Credits
-This uses GeSHi (http://qbnz.com/highlighter/) but for simplicity's sake I have included it.
+## :beers: Credits
+This uses :package: GeSHi (http://qbnz.com/highlighter/) but for simplicity's sake I have included it.
 
-Credit obviously to sprunge.us and ix.io who inspire this and whose main page I shamelessly ripped off
+Credit obviously to :sparkles: sprunge.us and :sparkles: ix.io who inspire this and whose main page I shamelessly ripped off
 
-`mpan` probably deserves a credit, for input to this project but also just in general.
+:art: `mpan` probably deserves a credit, for input to this project but also just in general.
 
-## License
+## :page_facing_up: License
 Tempal is licensed under the WTFPL2.1 under the condition that any fork or derative work remains under the WTFPL2.1.
 
             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE

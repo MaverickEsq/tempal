@@ -5,7 +5,7 @@
         |_|\___|_| |_| |_| .__/ \__,_|_|
                          |_|
 	     Where fleetingness is a virtue
-       
+[![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)[![PHP](https://img.shields.io/badge/Made%20with-php-9cf)](https://php.net/)
 ## Description
 Inspired by *sprunge*, *ix.io* and others, I decided to make a small, command line pastebin. The things I saw when looking at other pastebins were that they used things like weird google storage APIs and didn't have a web form that could be quickly used.
 

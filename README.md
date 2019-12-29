@@ -20,8 +20,9 @@ To this end, I decided to make a pastebin that met a few criteria.
 So, tempal was written in php, using an sqlite3 database and as little complexity as possible.
 
 ## Deployment
-Simply `git clone` or extract from zip into a web directory and `chmod ./inc 777`. Ensure you edit `config.ini` to include your domain and the name of your pastebin. (This will be used for POST details and the client)  
-`Tempal` expects to be at the root directory, theres probably a simple htaccess fix for those who wish to run it from a subdirectory.  
+Simply `git clone` or extract from zip into a web directory and `chmod ./inc 777`.  
+Ensure you edit `config.ini` to include your domain and the name of your pastebin.  
+  
 The first time the script runs it will make a database.
 
 ### Requirements  
@@ -36,7 +37,7 @@ Credit obviously to sprunge.us and ix.io who inspire this and whose main page I 
 `mpan` probably deserves a credit, for input to this project but also just in general.
 
 ## License
-Tempal is licensed under the WTFPL under the condition that any fork or derative work remains under the WTFPL.
+Tempal is licensed under the WTFPL2.1 under the condition that any fork or derative work remains under the WTFPL2.1.
 
             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
                     Version 2.1, December 2019

@@ -19,12 +19,12 @@ DESCRIPTION
     <div id="paste" style="display:none;"><form action="//<?= $config['url'] ?>" method="POST" accept-charset="UTF-8"><textarea name="<?= $config['name'] ?>" cols="80" rows="24"></textarea><br><button type="submit"><?= $config['name'] ?></button></form></div>
 EXAMPLES
     Use the output from a command to create a paste
-        ~$ cat crash/bang | curl -F '<?= $config['name'] ?>=<-' https://<?= $config['url'] ?>&nbsp;
+        ~$ cat bin/sock | curl -F '<?= $config['name'] ?>=<-' https://<?= $config['url'] ?>&nbsp;
            http://<?= $config['url'] ?>/aXZI
         ~$ firefox http://<?= $config['url'] ?>/aXZI?py
 
     Upload a file
-        ~$ curl -F '<?= $config['name'] ?>=@filename.ext' https://<?= $config['url'] ?>&nbsp;
+        ~$ curl -F '<?= $config['name'] ?>=@yourfile.pl' https://<?= $config['url'] ?>&nbsp;
            http://<?= $config['url'] ?>/aXZI
 
 CLIENT

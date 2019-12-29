@@ -1,5 +1,6 @@
 RewriteEngine On
 
-RewriteRule ^(?!inc/client\.php)client$ /inc/client.php [L]
+RewriteRule "^client$" "inc/client.php" [END]
 RewriteCond %{QUERY_STRING} ^(.*)$
-RewriteRule ^(?!index\.php|inc/client\.php)(.+?)(?:\..+)?$ /index.php?id=$1&hl=%1 [NE]
+RewriteRule "^([a-zA-Z0-9]+)(?:\.[a-zA-Z0-9]+)?$" index.php?id=$1&hl=%1 [NE,END]
+RewriteRule ".*" index.php [END]

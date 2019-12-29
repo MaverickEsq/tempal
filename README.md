@@ -35,7 +35,7 @@ This uses :package: GeSHi (http://qbnz.com/highlighter/) but for simplicity's sa
 
 Credit obviously to :sparkles: sprunge.us and :sparkles: ix.io who inspire this and whose main page I shamelessly ripped off
 
-:art: `mpan` probably deserves a credit, for input to this project but also just in general.
+:art: [`mpan`](https://github.com/mpan-pl) probably deserves a credit, for input to this project but also just in general.
 
 ## :page_facing_up: License
 Tempal is licensed under the WTFPL2.1 under the condition that any fork or derative work remains under the WTFPL2.1.

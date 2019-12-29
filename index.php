@@ -35,7 +35,7 @@ function genid($len=8) {
 
 function byteconv($s) {
     // Convert string-like filesizes into bytes
-    return substr($s, 0, -1) * pow(1024, strpos("BKMGTX", substr($, -1)));
+    return substr($s, 0, -1) * pow(1024, strpos("BKMGTX", substr($s, -1)));
 }
 
 $config = parse_ini_file('config.ini');

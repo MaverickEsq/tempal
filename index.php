@@ -110,6 +110,11 @@ if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
             header("Content-type: text/plain");
         }
     } else {
+        // This is here because php has broken svg detection
+        // and returns an unregistered mimetype for svg
+        if (explode(';', $mime)[0] == 'image/svg') {
+            $mime = 'image/svg+xml';
+        }
         header('Pragma: public');
         header('Cache-Control: max-age=432000');
         header('Expires: '. gmdate('D, d M Y H:i:s \G\M\T', time() + 432000));

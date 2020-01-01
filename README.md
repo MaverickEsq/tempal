@@ -6,7 +6,7 @@
                          |_|                 O O  | || |
 	     Where fleetingness is a virtue           | || |
                                            -------------
-[![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)[![PHP](https://img.shields.io/badge/Made%20with-php-9cf)](https://php.net/)[![Maintainability](https://api.codeclimate.com/v1/badges/1e03fc80af9a5f03f52c/maintainability)](https://codeclimate.com/github/MaverickEsq/tempal/maintainability)[![Build](https://img.shields.io/badge/build-interpreted-blueviolet)]  
+[![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)[![PHP](https://img.shields.io/badge/Made%20with-php-9cf)](https://php.net/)[![Maintainability](https://api.codeclimate.com/v1/badges/1e03fc80af9a5f03f52c/maintainability)](https://codeclimate.com/github/MaverickEsq/tempal/maintainability)[![Build](https://img.shields.io/badge/build-interpreted-blueviolet)](https://en.wikipedia.org/wiki/Interpreted_language)  
 ## :card_index: Description
 Inspired by *sprunge*, *ix.io* and others, I decided to make a small, command line pastebin. The things I saw when looking at other pastebins were that they used things like weird google storage APIs and didn't have a web form that could be quickly used.
 

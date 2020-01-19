@@ -103,9 +103,20 @@ if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
             } else {
                     $lexer = $_GET['hl'];
             }
-            // null for the path cause we leave it default, true to
-            // return it instead of echoing it.
-            $paste = geshi_highlight($paste, $lexer, null, true);
+
+            // Header for adding things like styles to the highlit code page
+            // This could be made prettier
+            $header = '<html><head><style>ol{list-style:none;padding-left:0}li{background-color:#fff!important}#b{position:fixed;right:0;top:0}#b:checked ~ pre > ol{list-style:decimal!important;padding-left:40px!important;background:#f0f0f0;background:repeating-linear-gradient(0deg,#f0f0f0,#f0f0f0 1.1em,#fff 1px,#f0f0f0 1.2em)}#b:checked ~ pre > ol > li{padding-left:5px}</style><head><html><input type="checkbox" id="b" name="ln"><label for="ln" style="position: fixed;right: 0.5em;font-size: 0.5em;top: 2em;">LN</label>';
+            // Create and set up a GeSHi object
+            $geshi= new GeSHi($paste, $lexer);
+            $geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS); // Enable OL
+            $geshi->set_overall_id('n'); // Makes the anchors n-\d+
+            $geshi->enable_ids(true); // Enables IDs for anchoring
+            $geshi->enable_keyword_links(false); // Stops linking to docs
+            $paste = $geshi->parse_code(); // Returns the html
+            // Add the style header to the page
+            $paste = $header . $paste;
+
         } else {
             header("Content-type: text/plain");
         }

@@ -109,6 +109,6 @@ if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
     echo $paste;
 } else {
     //Printing the page. If other criteria are met it never gets here
-    include(dirname(__FILE__).'inc/man.inc.php');
+    include(dirname(__FILE__).'/inc/man.inc.php');
 }
 ?>

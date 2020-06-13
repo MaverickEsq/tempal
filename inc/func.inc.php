@@ -20,8 +20,8 @@
     | pid | data   | ip |
     +-----+--------+----+
 */
-if (!file_exists(dirname(__DIR__) . '/paste.db')) {
-	$db = new SQLite3(dirname(__DIR__) . '/paste.db');
+if (!file_exists(dirname(__FILE__) . '/inc/paste.db')) {
+	$db = new SQLite3(dirname(__FILE__) . '/inc/paste.db');
 	$db->exec("CREATE TABLE pastes(pid TEXT, data BLOB, ip TEXT)");
 	$db->close();
 }

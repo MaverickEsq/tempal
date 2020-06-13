@@ -10,7 +10,7 @@
      * See the LICENSE file for more details. 
 */
 
-require_once(dirname(__DIR__).'/inc/func.inc.php');
+require_once(dirname(__FILE__).'/inc/func.inc.php');
 
 $config = parse_ini_file('config.ini');
 
@@ -109,6 +109,6 @@ if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
     echo $paste;
 } else {
     //Printing the page. If other criteria are met it never gets here
-    include(dirname(__DIR__).'inc/man.inc.php');
+    include(dirname(__FILE__).'inc/man.inc.php');
 }
 ?>

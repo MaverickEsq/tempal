@@ -10,33 +10,7 @@
      * See the LICENSE file for more details. 
 */
 
-/* Make the database if its not there
-    +-----+--------+----+
-    |       pastes      |
-    +-----+--------+----+
-    | pid | data   | ip |
-    +-----+--------+----+
-*/
-if (!file_exists('./inc/paste.db')) {
-	$db = new SQLite3('./inc/paste.db');
-	$db->exec("CREATE TABLE pastes(pid TEXT, data BLOB, ip TEXT)");
-	$db->close();
-}
-
-function genid($len=8) {
-    // Paste ID generation
-    // You would need about 435 exabytes of pastes before an 8 char ID
-    // will definitely repeat. Good enough for me.
-    $uid = base64_encode(random_bytes($len * 3));
-    $uid = preg_replace("/[^A-Za-z0-9]/", "", $uid);
-
-    return substr($uid, 0, $len);
-}
-
-function byteconv($s) {
-    // Convert string-like filesizes into bytes
-    return substr($s, 0, -1) * pow(1024, strpos("BKMGTX", substr($s, -1)));
-}
+require_once(dirname(__DIR__).'/inc/func.inc.php');
 
 $config = parse_ini_file('config.ini');
 
@@ -52,12 +26,12 @@ if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
         $paste = $_POST[$config['name']];
     }
 
-    if ($paste == '') {
-        die("Empty paste\n");
+    if (strlen($paste) > byteconv($config['max_size'])) {
+        die("Paste larger than " . $config['max_size'] . " (" . dfh(strlen($paste)) . ")\n");
     }
 
-    if (strlen($paste) > byteconv($config['max_size'])) {
-        die("Paste larger than " . $config['max_size'] . "\n");
+    if ($paste == '') {
+        die("Empty paste\n");
     }
 
     // Get an id for the paste
@@ -135,6 +109,6 @@ if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
     echo $paste;
 } else {
     //Printing the page. If other criteria are met it never gets here
-    include 'inc/man.inc.php';
+    include(dirname(__DIR__).'inc/man.inc.php');
 }
 ?>

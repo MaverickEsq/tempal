@@ -53,7 +53,7 @@ if (isset($_POST[$config['name']]) || isset($_FILES[$config['name']])) {
 } else if (isset($_GET['id'])) {
     // There is an id given, so this is a request to view
 
-    $db = new SQLite3('./inc/paste.db');
+    $db = new SQLite3(dirname(__FILE__).'/inc/paste.db');
     $paste = $db->querySingle('SELECT data FROM pastes WHERE pid=\'' . SQLite3::escapeString($_GET['id']) . '\'');
     $db->close();
 
